@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: healthhub360-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: healthhub360
+  template:
+    metadata:
+      labels:
+        app: healthhub360
+    spec:
+      containers:
+        - name: healthhub360-api
+          image: healthhubregistry.azurecr.io/healthhub360-api:v1
+      imagePullSecrets:
+        - name: acr-credentials
